@@ -2,6 +2,7 @@
 
 const Discord = require("discord.js");
 const fs      = require("fs");
+const cron    = require("node-cron");
 
 const commands = require("./commands.json");
 const config   = require("./config.json");
@@ -49,6 +50,9 @@ function saveData() {
     }
 }
 
+/**
+ * Backup the data in case something happens to it.
+ */
 function backupData() {
     if(lock === 1)
         setTimeout(backupData, 3000);
@@ -117,8 +121,7 @@ function getNumberEndingThing(number) {
     return `${number}${tmp}`;
 }
 
-//reset day
-setInterval(() => {
+cron.schedule("0 12 * * *", () => {
     data.globalStats.sentToday = 0;
     
     let guilds = Object.keys(data.timesSent);
@@ -132,10 +135,9 @@ setInterval(() => {
             data.timesSent[guild].members[member].sentToday = 0;
         });
     });
-}, 86400000);
+});
 
-//reset week
-setInterval(() => {
+cron.schedule("0 12 * * 0", () => {
     data.globalStats.sentWeek = 0;
     
     let guilds = Object.keys(data.timesSent);
@@ -149,7 +151,7 @@ setInterval(() => {
             data.timesSent[guild].members[member].sentWeek = 0;
         });
     });
-}, 604800000);
+});
 
 /**
  * Create data if it doesn't exist.
