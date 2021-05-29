@@ -121,7 +121,8 @@ function getNumberEndingThing(number) {
     return `${number}${tmp}`;
 }
 
-cron.schedule("0 12 * * *", () => {
+function clearDay() {
+    console.log(`Clearing day data`);
     data.globalStats.sentToday = 0;
     
     let guilds = Object.keys(data.timesSent);
@@ -135,9 +136,10 @@ cron.schedule("0 12 * * *", () => {
             data.timesSent[guild].members[member].sentToday = 0;
         });
     });
-});
+}
 
-cron.schedule("25 12 * * 0", () => {
+function clearWeek() {
+    console.log(`Clearing week data`);
     data.globalStats.sentWeek = 0;
     
     let guilds = Object.keys(data.timesSent);
@@ -151,7 +153,21 @@ cron.schedule("25 12 * * 0", () => {
             data.timesSent[guild].members[member].sentWeek = 0;
         });
     });
-});
+}
+
+if(!data.time) {
+    data.time = {
+        "nextResetDay": Date.now() + 180000,
+        "nextResetWeek": Date.now() + 180000
+    }
+}
+
+setInterval(() => {
+    if(data.time.nextResetDay <= Date.now())
+        clearDay();
+    if(data.time.nextResetWeek <= Date.now())
+        clearWeek();
+}, 10000);
 
 /**
  * Create data if it doesn't exist.
