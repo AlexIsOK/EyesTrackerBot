@@ -183,22 +183,23 @@ function createData(userID, guildID) {
  * Increment the eyes count
  * @param userID {string} the ID of the user.
  * @param guildID {string} the ID of the guild.
+ * @param amount {number} the amount to increment by.
  */
-function increment(userID, guildID) {
+function increment(userID, guildID, amount) {
     //create the data if it does not exist.
     createData(userID, guildID);
     
-    data.globalStats.sentToday++;
-    data.globalStats.sentWeek++;
-    data.globalStats.sentTotal++;
+    data.globalStats.sentToday += amount;
+    data.globalStats.sentWeek += amount;
+    data.globalStats.sentTotal += amount;
     
-    data.timesSent[guildID].serverStats.sentToday++;
-    data.timesSent[guildID].serverStats.sentWeek++;
-    data.timesSent[guildID].serverStats.sentTotal++;
+    data.timesSent[guildID].serverStats.sentToday += amount;
+    data.timesSent[guildID].serverStats.sentWeek += amount;
+    data.timesSent[guildID].serverStats.sentTotal += amount;
     
-    data.timesSent[guildID].members[userID].sentToday++;
-    data.timesSent[guildID].members[userID].sentWeek++;
-    data.timesSent[guildID].members[userID].sentTotal++;
+    data.timesSent[guildID].members[userID].sentToday += amount;
+    data.timesSent[guildID].members[userID].sentWeek += amount;
+    data.timesSent[guildID].members[userID].sentTotal += amount;
 }
 
 client.on("message", async (msg) => {
@@ -207,7 +208,8 @@ client.on("message", async (msg) => {
     
     if(msg.content.includes(eyes)) {
         console.log(`Eyes was sent.`);
-        increment(msg.author.id, msg.guild.id);
+        let count = msg.content.split(eyes).length - 1;
+        increment(msg.author.id, msg.guild.id, count);
         
         if(data.trackerChannels[msg.guild.id]) {
             const channel = await client.channels.fetch(data.trackerChannels[msg.guild.id].channel, true, false);
@@ -220,7 +222,7 @@ client.on("message", async (msg) => {
             
                 console.log(`today: ${today} total: ${total}`);
             
-                channel.send(`${msg.author.username}#${msg.author.discriminator} has just sent ${eyes} for the ${getNumberEndingThing(today)} time today and the ${getNumberEndingThing(total)} time overall!`);
+                channel.send(`${msg.author.username}#${msg.author.discriminator} has just sent ${count} ${eyes} emoji${plural(count)}, totaling ${getNumberEndingThing(today)} today and ${getNumberEndingThing(total)} overall!`);
             
             }
         }
