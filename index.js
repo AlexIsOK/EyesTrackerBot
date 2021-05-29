@@ -137,7 +137,7 @@ cron.schedule("0 12 * * *", () => {
     });
 });
 
-cron.schedule("6 12 * * 0", () => {
+cron.schedule("15 12 * * 0", () => {
     data.globalStats.sentWeek = 0;
     
     let guilds = Object.keys(data.timesSent);
