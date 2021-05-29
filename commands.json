@@ -1,0 +1,67 @@
+{
+    "commandList": [
+        {
+            "name": "config",
+            "description": "Set the channel where the amount of :eyes: emotes will be sent.",
+            "options": [
+                {
+                    "name": "channel",
+                    "description": "The channel to send the messages to.",
+                    "type": 7,
+                    "required": true
+                }
+            ]
+        },
+        {
+            "name": "stats",
+            "description": "Get the amount of eyes emojis sent globally, in this server, and individually.",
+            "options": [
+                {
+                    "name": "in",
+                    "description": "Should I get global, server, or individual stats?",
+                    "type": 2,
+                    "options": [
+                        {
+                            "name": "global",
+                            "value": "global",
+                            "description": "All eyes emojis sent across all servers.",
+                            "type": 1
+                        },
+                        {
+                            "name": "server",
+                            "value": "server",
+                            "description": "Just the eyes emojis for this server.",
+                            "type": 1
+                        },
+                        {
+                            "name": "individual",
+                            "value": "individual",
+                            "description": "Eyes sent by you or another person.",
+                            "type": 1,
+                            "options": [
+                                {
+                                    "name": "user",
+                                    "description": "The person to check (leave blank for yourself)",
+                                    "type": 6,
+                                    "required": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "help",
+            "description": "Get help with the bot."
+        },
+        {
+            "name": "invite",
+            "description": "Get an invite link for the bot."
+        },
+        {
+            "name": "disable",
+            "description": "Disable the tracking channel set up in /config"
+        }
+    ]
+}
