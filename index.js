@@ -136,6 +136,8 @@ function clearDay() {
             data.timesSent[guild].members[member].sentToday = 0;
         });
     });
+    
+    data.time.nextResetDay = new Date() + 86400000;
 }
 
 function clearWeek() {
@@ -153,6 +155,8 @@ function clearWeek() {
             data.timesSent[guild].members[member].sentWeek = 0;
         });
     });
+    
+    data.time.nextResetDay = new Date() + 604800000;
 }
 
 if(!data.time) {
