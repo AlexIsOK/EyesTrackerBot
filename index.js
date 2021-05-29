@@ -137,7 +137,7 @@ function clearDay() {
         });
     });
     
-    data.time.nextResetDay = new Date() + 86400000;
+    data.time.nextResetDay = Date.now() + 86400000;
 }
 
 function clearWeek() {
@@ -156,7 +156,7 @@ function clearWeek() {
         });
     });
     
-    data.time.nextResetWeek = new Date() + 604800000;
+    data.time.nextResetWeek = Date.now() + 604800000;
 }
 
 if(!data.time) {
