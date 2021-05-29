@@ -339,17 +339,21 @@ ${sent.sentTotal} time${plural(sent.sentTotal)} overall
                 "/stats - get statistics from all servers, this server, or a specific person.\n" +
                 "/invite - generates an invite link to add this bot to another server.\n" +
                 "```\n\n" +
-                "Need help?  Join the support server here: https://discord.gg/RqksgVY2EA");
+                "Need help?  Join the support server: https://discord.gg/RqksgVY2EA");
         }
         case "invite": {
             return reply(intr.id, intr.token, "[Here is an invite link for the bot](https://eyes.alexisok.dev/)");
         }
         case "disable": {
-            if(data.trackerChannels[intr.guild_id] && data.trackerChannels[intr.guild_id].channel) {
-                delete data.trackerChannels[intr.guild_id];
-                return reply(intr.id, intr.token, "I have disabled the tracking channel.  You can re-enable it with /config");
+            if((intr.member.permissions & 16) === 16) {
+                if(data.trackerChannels[intr.guild_id] && data.trackerChannels[intr.guild_id].channel) {
+                    delete data.trackerChannels[intr.guild_id];
+                    return reply(intr.id, intr.token, "I have disabled the tracking channel.  You can re-enable it with /config");
+                } else {
+                    return reply(intr.id, intr.token, "I could be mistaken, but it doesn't seem like you have a tracker channel set up yet.  Use `/config` to make one!");
+                }
             } else {
-                return reply(intr.id, intr.token, "I could be mistaken, but it doesn't seem like you have a tracker channel set up yet.  Use `/config` to make one!");
+                return reply(intr.id, intr.token, "Sorry, but this command can only be run by someone who has the 'Manage Channels' permission.");
             }
         }
     }
