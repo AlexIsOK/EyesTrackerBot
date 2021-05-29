@@ -221,7 +221,7 @@ client.on("message", async (msg) => {
                 
                 console.log(`today: ${today} total: ${total}`);
                 
-                channel.send(`${msg.author.username}#${msg.author.discriminator} has just sent ${count} ${eyes} emoji${plural(count)}, totaling ${getNumberEndingThing(today)} today and ${getNumberEndingThing(total)} overall!`);
+                channel.send(`${msg.author.username}#${msg.author.discriminator} has just sent ${count} ${eyes} emoji${plural(count)}, totaling ${(today)} today and ${(total)} overall!`);
                 
             }
         }
