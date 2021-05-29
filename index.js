@@ -16,7 +16,7 @@ const client = new Discord.Client({
 client.on("ready", () => {
     commands.commandList.forEach((cm) => {
         console.log(`posting ${JSON.stringify(cm.name)}`);
-        client.api.applications(client.user.id).guilds("696529468247769149")
+        client.api.applications(client.user.id)
               .commands.post({data: cm});
     })
     
