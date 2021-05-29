@@ -15,7 +15,6 @@ const client = new Discord.Client({
 
 client.on("ready", () => {
     commands.commandList.forEach((cm) => {
-        console.log(`posting ${JSON.stringify(cm.name)}`);
         client.api.applications(client.user.id)
               .commands.post({data: cm});
     })
@@ -208,7 +207,7 @@ client.on("message", async (msg) => {
     
     if(msg.content.includes(eyes)) {
         console.log(`Eyes was sent.`);
-        let count = msg.content.split(eyes).length - 1;
+        let count = Math.min(msg.content.split(eyes).length - 1, 5);
         increment(msg.author.id, msg.guild.id, count);
         
         if(data.trackerChannels[msg.guild.id]) {
@@ -216,14 +215,14 @@ client.on("message", async (msg) => {
             if(channel) {
                 if(channel.type !== "text")
                     return;
-            
+                
                 let today = data.timesSent[msg.guild.id].members[msg.author.id].sentToday;
                 let total = data.timesSent[msg.guild.id].members[msg.author.id].sentTotal;
-            
+                
                 console.log(`today: ${today} total: ${total}`);
-            
+                
                 channel.send(`${msg.author.username}#${msg.author.discriminator} has just sent ${count} ${eyes} emoji${plural(count)}, totaling ${getNumberEndingThing(today)} today and ${getNumberEndingThing(total)} overall!`);
-            
+                
             }
         }
     }
@@ -231,8 +230,6 @@ client.on("message", async (msg) => {
 });
 
 client.ws.on("INTERACTION_CREATE", async (intr) => {
-    console.log(JSON.stringify(intr, null, 4));
-    
     switch(intr.data.name) {
         case "config": {
             //if user has "manage channels" permission
