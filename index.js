@@ -156,7 +156,7 @@ function clearWeek() {
         });
     });
     
-    data.time.nextResetDay = new Date() + 604800000;
+    data.time.nextResetWeek = new Date() + 604800000;
 }
 
 if(!data.time) {
