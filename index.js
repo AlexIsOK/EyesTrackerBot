@@ -440,8 +440,8 @@ function timeCommand(intr) {
     
     const moment = require("moment");
     
-    let dayMS  = data.time.nextResetDay;
-    let weekMS = data.time.nextResetWeek;
+    let dayMS  = Number(data.time.nextResetDay);
+    let weekMS = Number(data.time.nextResetWeek);
     
     const nextDayString  = `${new Date(dayMS).toString().split("GMT")[0]}MST (${moment(dayMS).fromNow()})`;
     const nextWeekString = `${new Date(weekMS).toString().split("GMT")[0]}MST (${moment(weekMS).fromNow()})`;
