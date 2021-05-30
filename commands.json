@@ -62,6 +62,10 @@
         {
             "name": "disable",
             "description": "Disable the tracking channel set up in /config"
+        },
+        {
+            "name": "time",
+            "description": "Get the next time for the day/week resets"
         }
     ]
 }

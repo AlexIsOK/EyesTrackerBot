@@ -11,6 +11,7 @@
   "license": "unlicense",
   "dependencies": {
     "discord.js": "github:discordjs/discord.js#af00ec8970e77ea8a0afd21571eeeef9c554e1ec",
+    "moment": "^2.29.1",
     "node-cron": "^3.0.0"
   }
 }

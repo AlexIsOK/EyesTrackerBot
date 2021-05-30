@@ -13,11 +13,13 @@ const client = new Discord.Client({
     intents: ["GUILD_MESSAGES", "GUILDS"]
 });
 
-client.on("ready", () => {
+client.on("ready", async () => {
+    console.log(`ready event`);
     commands.commandList.forEach((cm) => {
         client.api.applications(client.user.id)
               .commands.post({data: cm});
-    })
+    });
+    console.log(`posted`);
     
 });
 
@@ -426,6 +428,26 @@ function disableCommand(intr) {
     }
 }
 
+/**
+ * Get the time until the next day and week resets.
+ * 
+ * This does not have any arguments.
+ * 
+ * @param intr the interaction.
+ */
+function timeCommand(intr) {
+    
+    const moment = require("moment");
+    
+    let dayMS  = data.time.nextResetDay;
+    let weekMS = data.time.nextResetWeek;
+    
+    const nextDayString  = `${new Date(dayMS).toString().split("GMT")[0]}MST (${moment(dayMS).fromNow()})`;
+    const nextWeekString = `${new Date(weekMS).toString().split("GMT")[0]}MST (${moment(weekMS).fromNow()})`;
+    
+    return reply(intr.id, intr.token, `The daily and weekly counters will reset:\n\`\`\`\nDay  - ${nextDayString}\nWeek - ${nextWeekString}\n\`\`\``);
+}
+
 //on slash command.
 client.ws.on("INTERACTION_CREATE", async (intr) => {
     
@@ -445,6 +467,9 @@ client.ws.on("INTERACTION_CREATE", async (intr) => {
         }
         case "disable": {
             return disableCommand(intr);
+        }
+        case "time": {
+            return timeCommand(intr);
         }
     }
 });
