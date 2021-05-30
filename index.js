@@ -404,7 +404,7 @@ async function helpCommand(intr) {
         "/disable - disable sending messages to the configured channel.\n" +
         "/stats - get statistics from all servers, this server, or a specific person.\n" +
         "/invite - generates an invite link to add this bot to another server.\n" +
-        "/time - get the time until the next reset.\n" +
+        "/time - get the time until the next day/week reset.\n" +
         "```\n\n" +
         "Need help?  Join the support server: https://discord.gg/RqksgVY2EA");
 }
