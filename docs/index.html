@@ -2,19 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Eyes Tracking Bot</title>
-    <meta http-equiv="refresh" content="0; url=https://discord.com/api/oauth2/authorize?client_id=847596861958914069&permissions=3072&scope=bot+applications.commands">
-    <script>
-        window.location.href = "https://discord.com/api/oauth2/authorize?client_id=847596861958914069&permissions=3072&scope=bot+applications.commands";
-    </script>
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
     <style>
+        
+        html, body, button, footer {
+            cursor: url("cursor.ico"), auto;
+        }
+        
         body {
-            background-color: black;
+            font-family: 'Ubuntu',sans-serif;
+            background-color: #23272a;
             color: white;
+        }
+        
+        .feature {
+            margin: 7vh 2vw 2vw;
+            text-align: center;
+        }
+        
+        .btn {
+            font-family: 'Ubuntu',sans-serif;
+            background-color: #5865F2;
+            border-color: #5865F2;
+            color: white;
+            text-align: center;
+        }
+        
+        a {
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
     <body>
-        <a href="https://discord.com/api/oauth2/authorize?client_id=847596861958914069&permissions=3072&scope=bot+applications.commands">Click here if you are not redirected.</a>
+        <div style="text-align: center; margin-top: 5vh">
+            <h1>Track the amount of times 👀 is sent in your server!</h1>
+            <h2>Just invite the bot and it starts working automagically.</h2>
+        </div>
+        <div style="margin: 10vh 2vw 2vw; text-align: center">
+            <button class="btn" onclick="window.open('https://eyes.alexisok.dev/invite.html')">
+                <div style="display: flex;">
+                    <img src="discord_new_logo.svg" alt="Discord Logo" style="margin-left: 0.3vw; max-width: 64px">
+                    <h2 style="margin-left: 0.5vw; margin-right: 0.5vw; padding-left: 10px">Invite to Discord</h2>
+                </div>
+            </button>
+        </div>
+        <div style="margin: 2vh 2vw 2vw; text-align: center">
+            <button class="btn" onclick="window.open('https://discord.alexisok.dev/')" style="; background-color: #57F287; border-color: #57F287">
+                <div style="display: flex">
+                    <img src="eyes.png" alt="Discord Logo" style="margin-left: 0.3vw; max-width: 64px">
+                    <h2 style="margin-left: 0.5vw; margin-right: 0.5vw; padding-left: 10px">Join the Server</h2>
+                </div>
+            </button>
+        </div>
+        <div style="margin: 10vh 2vw 2vw; text-align: center">
+            <h1>Features</h1>
+        </div>
+        <div class="feature">
+            <h2>See various statistics about the 👀 emoji</h2>
+            <img src="feature_0.png" alt="Statistics for the amount of eyes emojis are sent">
+        </div>
+        <div class="feature">
+            <h2>Log the amount of 👀 sent</h2>
+            <img src="feature_1.png" alt="Channel where eye tracking messages are sent">
+        </div>
+        <div class="feature">
+            <h2>Compete to see who can send the most 👀</h2>
+            <img src="feature_2.png" alt="Time until the daily and weekly counting trackers fire">
+        </div>
+        
+        <h1 style="text-align: center; margin-top: 20vh; margin-bottom: 5vh">Ready to <i>enhance</i> your Discord Server?</h1>
+        <div style="margin: 0 2vw 2vw; text-align: center">
+            <button class="btn" onclick="window.open('https://eyes.alexisok.dev/invite.html')">
+                <div style="display: flex;">
+                    <img src="discord_new_logo.svg" alt="Discord Logo" style="margin-left: 0.3vw; max-width: 64px">
+                    <h2 style="margin-left: 0.5vw; margin-right: 0.5vw; padding-left: 10px">Invite to Discord</h2>
+                </div>
+            </button>
+        </div>
+        <div style="margin: 2vh 2vw 2vw; text-align: center">
+            <button class="btn" onclick="window.open('https://discord.alexisok.dev/')" style="; background-color: #57F287; border-color: #57F287">
+                <div style="display: flex">
+                    <img src="eyes.png" alt="Discord Logo" style="margin-left: 0.3vw; max-width: 64px">
+                    <h2 style="margin-left: 0.5vw; margin-right: 0.5vw; padding-left: 10px">Join the Server</h2>
+                </div>
+            </button>
+        </div>
     </body>
+    <footer style="margin-top: 20vh; margin-left: 1vw; margin-bottom: 4vh">
+        <h4>Thanks to GitHub Pages for allowing me to host this website for free :D</h4>
+        <h4>If you have any questions, feel free to <a href="https://discord.alexisok.dev/">join the support server</a> or
+        email me (listed on my <a href="https://github.com/AlexIsOK">GitHub profile</a>)</h4>
+    </footer>
 </html>
