@@ -13,6 +13,8 @@ const client = new Discord.Client({
     intents: ["GUILD_MESSAGES", "GUILDS"]
 });
 
+const webmsg = new Discord.WebhookClient(config.webhookID, config.webhookToken);
+
 client.on("ready", async () => {
     console.log(`ready event`);
     commands.commandList.forEach((cm) => {
@@ -21,6 +23,30 @@ client.on("ready", async () => {
     });
     console.log(`posted`);
     
+});
+
+client.on("guildCreate", guild => {
+    webmsg.send("**GUILD JOIN**", {
+        username: "Eyes Tracking Bot",
+        avatarURL: client.user.avatarURL(),
+        embeds: [new Discord.MessageEmbed()
+            .setThumbnail(guild.iconURL())
+            .setTitle("Joined Guild")
+            .setDescription(`Name: ${guild.name}\nCreation Time: ${guild.createdAt.toISOString()}\nID: ${guild.id}\nOwner ID: ${guild.ownerID}`)
+        ]
+    });
+});
+
+client.on("guildDelete", guild => {
+    webmsg.send("**GUILD LEAVE**", {
+        username: "Eyes Tracking Bot",
+        avatarURL: client.user.avatarURL(),
+        embeds: [new Discord.MessageEmbed()
+            .setThumbnail(guild.iconURL())
+            .setTitle("Left Guild")
+            .setDescription(`Name: ${guild.name}\nCreation Time: ${guild.createdAt.toISOString()}\nID: ${guild.id}\nOwner ID: ${guild.ownerID}`)
+        ]
+    });
 });
 
 let selfSent = 0;
