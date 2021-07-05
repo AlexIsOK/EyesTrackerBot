@@ -432,7 +432,7 @@ async function helpCommand(intr) {
         "/invite - generates an invite link to add this bot to another server.\n" +
         "/time - get the time until the next day/week stats reset.\n" +
         "```\n\n" +
-        "Need help?  Join the support server: https://discord.gg/RqksgVY2EA");
+        "Need help?  Join the support server: https://discord.gg/qFMbQhdjgN");
 }
 
 /**
